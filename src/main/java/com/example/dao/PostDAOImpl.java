@@ -19,4 +19,13 @@ public class PostDAOImpl implements PostDAO{
 		return session.selectList(namespace + ".list");
 	}
 
+	@Override
+	public void insert(PostVO vo) {
+		session.insert(namespace + ".insert", vo);
+	}
+
+	@Override
+	public void update(PostVO vo) {
+		session.update(namespace + ".update", vo);
+	}
 }

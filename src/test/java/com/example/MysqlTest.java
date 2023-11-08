@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.dao.MysqlDAO;
 import com.example.dao.PostDAO;
+import com.example.domain.PostVO;
 
 @SpringBootTest
 public class MysqlTest {
@@ -14,6 +15,23 @@ public class MysqlTest {
 	
 	@Autowired
 	PostDAO pdao;
+	
+//	@Test
+//	public void insert() {
+//		PostVO vo=new PostVO();
+//		vo.setTitle("안녕하세요!");
+//		vo.setWriter("blue");
+//		pdao.insert(vo);
+//	}
+	
+	@Test
+	public void upddate() {
+		PostVO vo=new PostVO();
+		vo.setTitle("안녕하세요! 홍길동입니다.");
+		vo.setBody("수정합니다.");
+		vo.setPid(4);
+		pdao.update(vo);
+	}
 	
 	@Test
 	public void list() {
