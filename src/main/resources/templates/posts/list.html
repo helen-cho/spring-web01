@@ -1,7 +1,7 @@
 <div class="my-5">
-	<h1 class="text-center mb-5">Post List</h1>
+	<h1 class="text-center mb-5">게시글</h1>
 	<div class="text-end">
-		<a href="/posts/insert" class="btn btn-primary sm px-5">Register</a>
+		<a href="/posts/insert" class="btn btn-primary sm px-5 mb-3">글쓰기</a>
 	</div>
 	<div id="div_posts"></div>
 </div>
@@ -10,7 +10,7 @@
 	{{#each .}}
 		<tr>
 			<td>{{pid}}</td>
-			<td>{{title}}</td>
+			<td><a href="/posts/read?pid={{pid}}">{{title}}</a></td>
 			<td>{{fmtdate}}</td>
 			<td>{{uname}} ({{writer}})</td>
 		</tr>	

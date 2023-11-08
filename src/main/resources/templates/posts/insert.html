@@ -1,11 +1,11 @@
 <div class="my-5">
-	<h1 class="text-center mb-5">Post Register</h1>
+	<h1 class="text-center mb-5">글쓰기</h1>
 	<form name="frm">
-		<input name="title" class="form-control mb-2" placeholder="Please Enter Title...">
-		<textarea name="body" class="form-control" rows="10" placeholder="Please Enter Content..."></textarea>
+		<input name="title" class="form-control mb-2" placeholder="제목을 입력하세요.">
+		<textarea name="body" class="form-control" rows="10" placeholder="내용을 입력하세요."></textarea>
 		<div class="text-center mt-3">
-			<button type="submit" class="btn btn-primary">Register</button>
-			<button type="reset" class="btn btn-secondary">Cancel</button>
+			<button type="submit" class="btn btn-primary">저장</button>
+			<button type="reset" class="btn btn-secondary">취소</button>
 		</div>
 	</form>
 </div>
@@ -16,11 +16,11 @@
 		const body=$(frm.body).val();
 		const uid="sky";
 		if(title==""){
-			alert("Input Title...");
+			alert("제목을 입력하세요!");
 			$(frm.title).focus();
 			return;
 		}
-		if(confirm("Do you want to Save?")){
+		if(confirm("작성하신 게시글을 등록하실래요?")){
 			$.ajax({
 				type:"post",
 				url:"/posts/insert",
