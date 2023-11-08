@@ -56,4 +56,12 @@ public class PostController {
 	public void insert(PostVO vo) {
 		dao.insert(vo);
 	}
+	
+	@PostMapping("/posts/delete")
+	@ResponseBody
+	public void dlete(int pid) {
+		dao.delete(pid);
+	}
 }
+
+
