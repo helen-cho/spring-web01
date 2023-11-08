@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,14 @@ public class PostController {
 	@GetMapping("/posts")
 	public String list(Model model) {
 		model.addAttribute("pageName", "posts/list");
+		model.addAttribute("posts", dao.list());
 		return "home";
 	}
 	
 	
 	@GetMapping("/posts/list.json")
 	@ResponseBody
-	public List<PostVO> list(){
+	public List<HashMap<String, Object>> list(){
 		return dao.list();
 	}
 }
