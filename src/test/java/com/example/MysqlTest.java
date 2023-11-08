@@ -24,13 +24,25 @@ public class MysqlTest {
 //		pdao.insert(vo);
 //	}
 	
+//	@Test
+//	public void upddate() {
+//		PostVO vo=new PostVO();
+//		vo.setTitle("안녕하세요! 홍길동입니다.");
+//		vo.setBody("수정합니다.");
+//		vo.setPid(4);
+//		pdao.update(vo);
+//	}
+	
+
+	
+//	@Test
+//	public void read() {
+//		pdao.read(1);
+//	}
+	
 	@Test
-	public void upddate() {
-		PostVO vo=new PostVO();
-		vo.setTitle("안녕하세요! 홍길동입니다.");
-		vo.setBody("수정합니다.");
-		vo.setPid(4);
-		pdao.update(vo);
+	public void delete() {
+		pdao.delete(3);
 	}
 	
 	@Test

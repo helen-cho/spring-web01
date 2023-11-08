@@ -28,4 +28,18 @@ public class PostDAOImpl implements PostDAO{
 	public void update(PostVO vo) {
 		session.update(namespace + ".update", vo);
 	}
+
+	@Override
+	public PostVO read(int pid) {
+		return session.selectOne(namespace + ".read", pid);
+	}
+
+	@Override
+	public void delete(int pid) {
+		session.delete(namespace + ".delete", pid);
+	}
 }
+
+
+
+
