@@ -2,7 +2,7 @@ package com.example.domain;
 
 import java.util.Date;
 
-public class PostVO {
+public class PostVO extends UserVO{
 	private int pid;
 	private String title;
 	private String body;
