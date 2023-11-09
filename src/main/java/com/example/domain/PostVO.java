@@ -1,11 +1,6 @@
 package com.example.domain;
 
-
-
-
-
 import java.util.Date;
-
 
 public class PostVO {
 	private int pid;
@@ -43,5 +38,11 @@ public class PostVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	
+	@Override
+	public String toString() {
+		return "PostVO [pid=" + pid + ", title=" + title + ", body=" + body + ", writer=" + writer + ", regdate="
+				+ regdate + "]";
 	}
 }

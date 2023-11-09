@@ -21,26 +21,22 @@ public class PostDAOImpl implements PostDAO{
 	}
 
 	@Override
-	public void insert(PostVO vo) {
-		session.insert(namespace + ".insert", vo);
-	}
-
-	@Override
-	public void update(PostVO vo) {
-		session.update(namespace + ".update", vo);
-	}
-
-	@Override
 	public HashMap<String, Object> read(int pid) {
 		return session.selectOne(namespace + ".read", pid);
+	}
+
+	@Override
+	public void insert(PostVO vo) {
+		session.insert(namespace + ".insert", vo);
 	}
 
 	@Override
 	public void delete(int pid) {
 		session.delete(namespace + ".delete", pid);
 	}
+
+	@Override
+	public void update(PostVO vo) {
+		session.update(namespace + ".update", vo);
+	}
 }
-
-
-
-
