@@ -15,4 +15,10 @@ public class PostController {
 		return "home";
 	}
 
+	@GetMapping("/read")
+	public String read(Model model, int pid) {
+		model.addAttribute("pid", pid);
+		model.addAttribute("pageName", "posts/read");
+		return "home";
+	}
 }

@@ -6,7 +6,13 @@
 	<table class="table table-striped">
 	{{#each .}}
 		<tr>
-			<td>{{title}}</td>
+			<td>
+				<div class="ellipsis">
+					<a href="/posts/read?pid={{pid}}">{{title}}</a>
+				</div>
+			</td>
+			<td>{{uname}} ({{writer}})</td>
+			<td>{{fmtdate}}</td>
 		</tr>	
 	{{/each}}
 	</table>
