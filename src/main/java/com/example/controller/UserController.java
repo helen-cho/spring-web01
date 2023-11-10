@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/users")
 public class UserController {
 	
+	@GetMapping("/password")
+	public String password(Model model) {
+		model.addAttribute("pageName", "users/password.html");
+		return "home";
+	}
+	
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("pageName", "users/login.html");
