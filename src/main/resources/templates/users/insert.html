@@ -6,6 +6,7 @@
 				<div class="input-group mb-2">
 					<span class="input-group-text">아이디</span>
 					<input name="uid" class="form-control">
+					<button id="btn-check" class="btn btn-primary" type="button">중복체크</button>
 				</div>
 				<div class="input-group mb-2">
 					<span class="input-group-text">비밀번호</span>
@@ -26,7 +27,7 @@
 				</div>
 				<div><input name="address2" class="form-control"></div>
 				<div class="text-center mt-3">
-					<button id="btn-insert" class="btn btn-primary" type="button">가입</button>
+					<button class="btn btn-primary">가입</button>
 					<button class="btn btn-secondary" type="reset">취소</button>
 				</div>	
 			</form>	
@@ -34,6 +35,45 @@
 	<div>
 </div>
 <script>
+	let check=false;
+	$(frm).on("submit", function(e){
+		e.preventDefault();	
+		const uid=$(frm.uid).val();
+		const upass=$(frm.upass).val();
+		const uname=$(frm.uname).val();
+		const phone=$(frm.phone).val();
+		const address1=$(frm.address1).val();
+		const address2=$(frm.address2).val();
+		if(uid=="" || upass=="" || uname==""){
+			alert("아이디, 비밀번호, 이름을 꼭 입력하세요!");
+		}else if(check==false){
+			alert("아이디 중복체크을 하세요!");
+		}
+	});
+	
+	$("#btn-check").on("click", function(){
+		const uid=$(frm.uid).val();
+		const upass=$(frm.upass).val();
+		$.ajax({
+			type:"post",
+			url:"/users/login",
+			data:JSON.stringify({uid, upass}),
+			contentType:"application/JSON",
+			success:function(data){
+				if(data==0) {
+					alert("가능가능한 아이디입니다.");
+					check=true;
+				}else{
+					alert("이미 사용중인 아이디입니다.");
+				}
+			}
+		})
+	});
+	
+	$(frm.uid).on("change", function(){
+		check=false;	
+	});
+	
 	$("#btn-search").on("click", function(){
 		new daum.Postcode({
 			oncomplete:function(data){
