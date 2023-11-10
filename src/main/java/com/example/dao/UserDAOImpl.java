@@ -28,4 +28,9 @@ public class UserDAOImpl implements UserDAO{
 	public void update(UserVO vo) {
 		session.update(namespace + ".update", vo);
 	}
+
+	@Override
+	public void updatePhoto(UserVO vo) {
+		session.update(namespace + ".update_photo", vo);
+	}
 }

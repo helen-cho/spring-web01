@@ -28,6 +28,10 @@ public class UserRestControler {
 		String filePath="/upload/photo/";
 		String fileName=System.currentTimeMillis() + ".jpg";
 		file.transferTo(new File("c:" + filePath + fileName));
+		UserVO vo=new UserVO();
+		vo.setUid(uid);
+		vo.setPhoto(filePath + fileName);
+		dao.updatePhoto(vo);
 	}
 	
 	@PostMapping("/update")
