@@ -18,6 +18,12 @@ public class UserRestControler {
 	@Autowired
 	UserDAO dao;
 	
+	@PostMapping("/update")
+	public void update(@RequestBody UserVO vo) {
+		//System.out.println(vo.toString());
+		dao.update(vo);
+	}
+	
 	@GetMapping("/read") //localhost:8080/users/read?uid=blue
 	public HashMap<String,Object> read(String uid){
 		return dao.read(uid);
