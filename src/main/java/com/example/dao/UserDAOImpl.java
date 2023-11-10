@@ -39,4 +39,9 @@ public class UserDAOImpl implements UserDAO{
 		session.update(namespace + ".update_password", vo);
 		
 	}
+
+	@Override
+	public void insert(UserVO vo) {
+		session.insert(namespace + ".insert", vo);
+	}
 }

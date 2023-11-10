@@ -50,6 +50,12 @@ public class UserRestControler {
 		return dao.read(uid);
 	}
 	
+	@PostMapping("/insert")
+	public void insert(@RequestBody UserVO vo) {
+		//System.out.println(vo.toString());
+		dao.insert(vo);
+	}
+	
 	@PostMapping("/login")
 	public int login(@RequestBody UserVO vo) {
 		int result=0;
