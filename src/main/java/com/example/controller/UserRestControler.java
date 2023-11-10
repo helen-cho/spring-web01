@@ -34,6 +34,11 @@ public class UserRestControler {
 		dao.updatePhoto(vo);
 	}
 	
+	@PostMapping("/password")
+	public void password(@RequestBody UserVO vo) {
+		dao.updatePassword(vo);
+	}
+	
 	@PostMapping("/update")
 	public void update(@RequestBody UserVO vo) {
 		//System.out.println(vo.toString());

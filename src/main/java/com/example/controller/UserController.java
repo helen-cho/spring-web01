@@ -15,6 +15,12 @@ public class UserController {
 		return "home";
 	}
 	
+	@GetMapping("/insert")
+	public String insert(Model model) {
+		model.addAttribute("pageName", "users/insert.html");
+		return "home";
+	}
+	
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("pageName", "users/login.html");
