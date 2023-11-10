@@ -16,7 +16,7 @@
 				</div>
 				<div class="input-group mb-2">
 					<span class="input-group-text">주소</span>
-					<input name="address1" class="form-control" value="{{address1}}">
+					<input name="address1" class="form-control" value="{{address1}}" readonly>
 					<button id="btn-search" class="btn btn-primary" type="button">검색</button>
 				</div>
 				<div><input name="address2" class="form-control" value="{{address2}}"></div>
@@ -31,6 +31,17 @@
 
 <script>
 	getMypage();
+	
+	$("#div_mypage").on("click", "#btn-search", function(){
+		new daum.Postcode({
+			oncomplete:function(data){
+				//console.log(data);
+				const address=data.address;
+				const building=data.buildingName ? data.buildingName:'';
+				$(frm.address1).val(`${address}(${building})`);
+			}
+		}).open();
+	});
 	
 	$("#div_mypage").on("click", "#btn-update", function(){
 		const uname=$(frm.uname).val();
