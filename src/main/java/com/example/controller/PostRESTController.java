@@ -22,9 +22,14 @@ public class PostRESTController {
 		return dao.list();
 	}
 	
+	@GetMapping("/total")
+	public int total(String key, String query){
+		return dao.total(key, query);
+	}
+	
 	@GetMapping("/list1.json") //http://localhost:8080/posts/list1.json?page=1&size=5
-	public List<HashMap<String,Object>> list1(int page, int size){
-		return dao.list1(page, size);
+	public List<HashMap<String,Object>> list1(int page, int size, String key, String query){
+		return dao.list1(page, size, key, query);
 	}
 	
 	@GetMapping("/read.json") //localhost:8080/posts/read.json?pid=6
