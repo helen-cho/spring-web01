@@ -22,6 +22,12 @@ public class UserRestControler {
 	@Autowired
 	UserDAO dao;
 	
+	@PostMapping("/insert")
+	public void insert(@RequestBody UserVO vo) {
+		//System.out.println(vo.toString());
+		dao.insert(vo);
+	}
+	
 	@PostMapping("/password")
 	public void password(@RequestBody UserVO vo) {
 		dao.password(vo);
