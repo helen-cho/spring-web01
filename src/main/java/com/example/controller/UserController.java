@@ -25,4 +25,10 @@ public class UserController {
 		model.addAttribute("pageName", "users/update.html");
 		return "home";
 	}
+	
+	@GetMapping("/password")
+	public String password(Model model) {
+		model.addAttribute("pageName", "users/password.html");
+		return "home";
+	}
 }
