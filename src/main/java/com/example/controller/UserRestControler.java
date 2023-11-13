@@ -22,6 +22,11 @@ public class UserRestControler {
 	@Autowired
 	UserDAO dao;
 	
+	@PostMapping("/password")
+	public void password(@RequestBody UserVO vo) {
+		dao.password(vo);
+	}
+	
 	@PostMapping("/upload")
 	public void upload(String uid, MultipartHttpServletRequest multi)throws Exception {
 		MultipartFile file=multi.getFile("file");

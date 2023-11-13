@@ -8,4 +8,5 @@ public interface UserDAO {
 	public UserVO login(String uid);
 	public void update(UserVO vo);
 	public void photo(UserVO vo);
+	public void password(UserVO vo);
 }
