@@ -26,13 +26,20 @@
 			</div>
 			<div class="col">
 				<div>{{fmtdate}}</div>
-				<div>
-					{{body}}
+				<div class="view{{cid}}">
+					[{{cid}}] {{body}}
 					<div class="text-end {{fn_hidden writer}}">
-						<button class="btn btn-success btn-sm">수정</button>
+						<button class="btn-update btn btn-success btn-sm" cid="{{cid}}">수정</button>
 						<button class="btn-delete btn btn-danger btn-sm" cid="{{cid}}">삭제</button>
 					</div>	
-				</div>	
+				</div>
+				<div class="edit{{cid}}" style="display:none;">
+					<textarea class="form-control" rows="5">{{body}}</textarea>
+					<div class="text-end mt-2">
+						<button class="btn-save btn btn-primary btn-sm">저장</button>
+						<button class="btn-cancel btn btn-secondary btn-sm" cid="{{cid}}">취소</button>
+					</div>	
+				</div>		
 			</div>
 		</div>	
 		<hr>
@@ -62,6 +69,22 @@
 		$("#btn-write, #div-write").toggle();	
 	}
 	
+	//수정버튼 클릭시
+	$("#div_comments").on("click", ".btn-update", function(){
+		const cid=$(this).attr("cid");
+		const row=$(this).parent().parent().parent();
+		row.find(".view" + cid).hide();
+		row.find(".edit" + cid).show();
+	});
+	
+	//취소버튼 클릭시
+	$("#div_comments").on("click", ".btn-cancel", function(){
+		const cid=$(this).attr("cid");
+		const row=$(this).parent().parent().parent();
+		row.find(".view" + cid).show();
+		row.find(".edit" + cid).hide();
+	});
+	
 	$("#div_comments").on("click", ".btn-delete", function(){
 		const cid=$(this).attr("cid");
 		if(confirm(`${cid}번 댓글을 삭제하실래요?`)) {
@@ -71,6 +94,7 @@
 				url:"/comments/delete",
 				data:{cid},
 				success:function(){
+					page=1;
 					getTotal();
 				}
 			})
@@ -113,8 +137,14 @@
 			url:"/comments/total",
 			data:{pid:post_id},
 			success:function(data){
-				const totalPages = Math.ceil(data/size);
-            	$("#pagination").twbsPagination("changeTotalPages", totalPages, page)		
+				if(data>size){
+					$("#pagination").show();
+					const totalPages = Math.ceil(data/size);
+	            	$("#pagination").twbsPagination("changeTotalPages", totalPages, page);
+	            }else{
+					getComments();
+					$("#pagination").hide();
+				}		
 			}
 		})
 	}

@@ -64,8 +64,10 @@
 					frm.submit();
 				}else{
 					$("#total").html(`검색수:${data}건`);
-					const totalPages = Math.ceil(data/size);
-                	$("#pagination").twbsPagination("changeTotalPages", totalPages, page)
+					if(data > size && data){
+						const totalPages = Math.ceil(data/size);
+                		$("#pagination").twbsPagination("changeTotalPages", totalPages, page);
+                	}
                 }
 			}
 		})
