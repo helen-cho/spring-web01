@@ -8,14 +8,31 @@
 		order by pid desc;
     </select>
     <select id="total" resultType="int">
-    	select count(*)
+    	select count(*) 
     	from posts
-    	where title like concat('%', #{query}, '%');
+    	<if test="key=='title'">
+			where title like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='body'">
+			where body like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='writer'">
+			where writer like concat('%', #{query}, '%') 
+		</if>
     </select>
     <select id="list1" resultType="hashmap">
         select p.*, u.uname, date_format(p.regdate, '%Y-%m-%d %T') fmtdate
 		from posts p, users u
-		where p.writer = u.uid and title like concat('%', #{query}, '%')
+		where p.writer = u.uid 
+		<if test="key=='title'">
+			and title like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='body'">
+			and body like concat('%', #{query}, '%')
+		</if>
+		<if test="key=='writer'">
+			and writer like concat('%', #{query}, '%') 
+		</if>
 		order by pid desc
 		limit #{start}, #{size};
     </select>

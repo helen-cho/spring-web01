@@ -5,7 +5,9 @@
 		<button id="btn-delete" class="btn btn-sm btn-danger">삭제</button>
 	</div>
 	<div id="div_post"></div>
+	<div th:include="posts/comments.html"></div>
 </div>
+</html>
 <script id="temp_post" type="x-handlebars-template">
 	<div class="card">
 		<div class="card-body">
