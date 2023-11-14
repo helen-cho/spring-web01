@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.CommentVO;
+
 @Repository
 public class CommentDAOImpl implements CommentDAO{
 	@Autowired
@@ -22,4 +24,13 @@ public class CommentDAOImpl implements CommentDAO{
 		return session.selectList(namespace + ".list", map);
 	}
 
+	@Override
+	public int total(int pid) {
+		return session.selectOne(namespace + ".total", pid);
+	}
+
+	@Override
+	public void insert(CommentVO vo) {
+		session.insert(namespace + ".insert", vo);
+	}
 }

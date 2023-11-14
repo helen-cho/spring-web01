@@ -45,13 +45,12 @@
 				}else if(data==0) {
 					alert("아이디가 존재하지 않습니다!");
 				}else {
-					const isLogin=$(frm.isLogin).is(":checked");
-					if(isLogin){
-						setCookie("uid", uid, 1);
+					sessionStorage.setItem("uid", uid);
+					if(sessionStorage.getItem("target")) {
+						location.href=sessionStorage.getItem("target");
 					}else{
-						sessionStorage.setItem("uid", uid);
+						location.href="/";
 					}
-					location.href="/";
 				}
 			}
 		})
