@@ -32,4 +32,17 @@ public class CommentRestController {
 	public void insert(@RequestBody CommentVO vo) {
 		dao.insert(vo);
 	}
+	
+	@GetMapping("/delete")
+	public void delete(int cid) {
+		dao.delete(cid);
+	}
 }
+
+
+
+
+
+
+
+

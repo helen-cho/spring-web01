@@ -1,3 +1,8 @@
+<style>
+	.hidden {
+		display:none;
+	}
+</style>
 <div class="my-5">
 	<h1 class="text-center mt-5">댓글관리</h1>
 	<div class="my-5" id="btn-write">
@@ -21,13 +26,25 @@
 			</div>
 			<div class="col">
 				<div>{{fmtdate}}</div>
-				{{body}}
+				<div>
+					{{body}}
+					<div class="text-end {{fn_hidden writer}}">
+						<button class="btn btn-success btn-sm">수정</button>
+						<button class="btn-delete btn btn-danger btn-sm" cid="{{cid}}">삭제</button>
+					</div>	
+				</div>	
 			</div>
 		</div>	
 		<hr>
 	{{/each}}
 </script>
 <script>
+	Handlebars.registerHelper("fn_hidden", function(writer){
+		if(sessionStorage.getItem("uid") != writer){
+			return "hidden";
+		}
+	});
+	
 	Handlebars.registerHelper("fn_photo", function(photo){
 		if(photo) {
 			return "/display?file=" + photo;
@@ -44,6 +61,21 @@
 	if(sessionStorage.getItem("uid")){
 		$("#btn-write, #div-write").toggle();	
 	}
+	
+	$("#div_comments").on("click", ".btn-delete", function(){
+		const cid=$(this).attr("cid");
+		if(confirm(`${cid}번 댓글을 삭제하실래요?`)) {
+			//댓글삭제
+			$.ajax({
+				type:"get",
+				url:"/comments/delete",
+				data:{cid},
+				success:function(){
+					getTotal();
+				}
+			})
+		}
+	});
 	
 	$("#btn-insert").on("click", function(){
 		const writer=sessionStorage.getItem("uid");

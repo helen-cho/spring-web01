@@ -33,4 +33,9 @@ public class CommentDAOImpl implements CommentDAO{
 	public void insert(CommentVO vo) {
 		session.insert(namespace + ".insert", vo);
 	}
+
+	@Override
+	public void delete(int cid) {
+		session.delete(namespace + ".delete", cid);
+	}
 }
