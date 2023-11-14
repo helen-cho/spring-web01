@@ -38,4 +38,14 @@ public class CommentDAOImpl implements CommentDAO{
 	public void delete(int cid) {
 		session.delete(namespace + ".delete", cid);
 	}
+
+	@Override
+	public void update(CommentVO vo) {
+		session.update(namespace + ".update", vo);
+	}
+
+	@Override
+	public CommentVO read(int cid) {
+		return session.selectOne(namespace + ".read", cid);
+	}
 }

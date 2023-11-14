@@ -26,18 +26,18 @@
 			</div>
 			<div class="col">
 				<div>{{fmtdate}}</div>
-				<div class="view{{cid}}">
+				<div class="view">
 					[{{cid}}] {{body}}
 					<div class="text-end {{fn_hidden writer}}">
-						<button class="btn-update btn btn-success btn-sm" cid="{{cid}}">수정</button>
+						<button class="btn-update btn btn-success btn-sm">수정</button>
 						<button class="btn-delete btn btn-danger btn-sm" cid="{{cid}}">삭제</button>
 					</div>	
 				</div>
-				<div class="edit{{cid}}" style="display:none;">
-					<textarea class="form-control" rows="5">{{body}}</textarea>
+				<div class="edit" style="display:none;">
+					<textarea class="body form-control" rows="5">{{body}}</textarea>
 					<div class="text-end mt-2">
-						<button class="btn-save btn btn-primary btn-sm">저장</button>
-						<button class="btn-cancel btn btn-secondary btn-sm" cid="{{cid}}">취소</button>
+						<button class="btn-save btn btn-primary btn-sm" cid="{{cid}}">저장</button>
+						<button class="btn-cancel btn btn-secondary btn-sm">취소</button>
 					</div>	
 				</div>		
 			</div>
@@ -71,18 +71,37 @@
 	
 	//수정버튼 클릭시
 	$("#div_comments").on("click", ".btn-update", function(){
-		const cid=$(this).attr("cid");
 		const row=$(this).parent().parent().parent();
-		row.find(".view" + cid).hide();
-		row.find(".edit" + cid).show();
+		row.find(".view").hide();
+		row.find(".edit").show();
 	});
 	
 	//취소버튼 클릭시
 	$("#div_comments").on("click", ".btn-cancel", function(){
-		const cid=$(this).attr("cid");
 		const row=$(this).parent().parent().parent();
-		row.find(".view" + cid).show();
-		row.find(".edit" + cid).hide();
+		row.find(".view").show();
+		row.find(".edit").hide();
+	});
+	
+	//저장버튼 클릭시
+	$("#div_comments").on("click", ".btn-save", function(){
+		const row=$(this).parent().parent().parent();
+		const body=row.find(".body").val();
+		const cid=$(this).attr("cid");
+		if(confirm(`${cid}번 댓글 내용을 수정하실래요?`)){
+			//alert(body);
+			//댓글수정
+			$.ajax({
+				type:"post",
+				url:"/comments/update",
+				data:JSON.stringify({cid, body}),
+				contentType:"application/JSON",
+				success:function(){
+					alert("댓글 내용이 수정되었습니다.");
+					getTotal();
+				}
+			})
+		}
 	});
 	
 	$("#div_comments").on("click", ".btn-delete", function(){

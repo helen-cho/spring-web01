@@ -8,4 +8,6 @@ public interface CommentDAO {
 	public int total(int pid);
 	public void insert(CommentVO vo);
 	public void delete(int cid);
+	public void update(CommentVO vo);
+	public CommentVO read(int cid);
 }
