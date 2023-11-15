@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.ProVO;
+import com.example.domain.QueryVO;
 
 @Repository
 public class ProDAOImpl implements ProDAO{
@@ -48,6 +49,12 @@ public class ProDAOImpl implements ProDAO{
 	@Override
 	public void update(ProVO vo) {
 		session.update(namespace + ".update", vo);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> slist(QueryVO vo) {
+		vo.setStart((vo.getPage()-1) * vo.getSize());
+		return session.selectList(namespace + ".slist", vo);
 	}
 }
 

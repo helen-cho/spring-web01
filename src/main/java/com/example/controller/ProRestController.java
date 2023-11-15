@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dao.ProDAO;
 import com.example.domain.ProVO;
+import com.example.domain.QueryVO;
 
 import java.util.*;
 
@@ -41,6 +42,11 @@ public class ProRestController {
 	@GetMapping("/list.json")
 	public List<HashMap<String,Object>> list(){
 		return dao.list();
+	}
+	
+	@GetMapping("/slist.json")
+	public List<HashMap<String,Object>> slist(QueryVO vo){
+		return dao.slist(vo);
 	}
 	
 	@GetMapping("/read.json")
