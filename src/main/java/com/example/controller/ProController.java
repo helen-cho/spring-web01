@@ -25,4 +25,10 @@ public class ProController {
 		model.addAttribute("pageName", "pro/read.html");
 		return "home.html";
 	}
+	
+	@GetMapping("/update")
+	public String update(Model model) {
+		model.addAttribute("pageName", "pro/update.html");
+		return "home.html";
+	}
 }
