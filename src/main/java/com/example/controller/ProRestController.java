@@ -58,4 +58,10 @@ public class ProRestController {
 	public int code() {
 		return dao.code();
 	}
+	
+	
+	@GetMapping("/total")
+	public int total(QueryVO vo) {
+		return dao.total(vo);
+	}
 }

@@ -56,6 +56,11 @@ public class ProDAOImpl implements ProDAO{
 		vo.setStart((vo.getPage()-1) * vo.getSize());
 		return session.selectList(namespace + ".slist", vo);
 	}
+
+	@Override
+	public int total(QueryVO vo) {
+		return session.selectOne(namespace + ".total", vo);
+	}
 }
 
 
