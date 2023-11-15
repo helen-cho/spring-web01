@@ -8,4 +8,6 @@ public interface ProDAO {
 	public int code();
 	public void insert(ProVO vo);
 	public HashMap<String,Object> read(String pcode);
+	public List<HashMap<String,Object>> stuList(String pcode);
+	public List<HashMap<String,Object>> couList(String pcode);
 }

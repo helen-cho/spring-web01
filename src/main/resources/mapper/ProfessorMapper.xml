@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.ProfessorMapper">
+	<select id="cou_list" resultType="hashmap">
+		select * 
+		from courses 
+		where instructor=#{pcode};
+	</select>
+	<select id="stu_list" resultType="hashmap">
+		select * 
+		from students 
+		where advisor=#{pcode};
+	</select>
 	<select id="read" resultType="hashmap">
 		select *, date_format(hiredate, '%Y-%m-%d') fmtdate, format(salary,0) fmtsalary
         from professors

@@ -23,6 +23,16 @@ public class ProRestController {
 		dao.insert(vo);
 	}
 	
+	@GetMapping("/stu/list.json")
+	public List<HashMap<String,Object>> stuList(String pcode){
+		return dao.stuList(pcode);
+	}
+	
+	@GetMapping("/cou/list.json")
+	public List<HashMap<String,Object>> couList(String pcode){
+		return dao.couList(pcode);
+	}
+	
 	@GetMapping("/list.json")
 	public List<HashMap<String,Object>> list(){
 		return dao.list();

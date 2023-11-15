@@ -34,6 +34,16 @@ public class ProDAOImpl implements ProDAO{
 	public HashMap<String, Object> read(String pcode) {
 		return session.selectOne(namespace + ".read", pcode);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> stuList(String pcode) {
+		return session.selectList(namespace + ".stu_list", pcode);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> couList(String pcode) {
+		return session.selectList(namespace + ".cou_list", pcode);
+	}
 }
 
 
