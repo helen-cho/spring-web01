@@ -4,7 +4,7 @@
 </div>
 <script id="temp_pro" type="x-handlebars-template">
 	<div class="col-md-6">
-		<form name="frm" class="card p-3">
+		<form name="frm" id="frm" class="card p-3">
 			<div class="input-group mb-2">
 				<span class="input-group-text">교수번호</span>
 				<input name="pcode" class="form-control" readonly value="{{pcode}}">
@@ -75,6 +75,17 @@
 				$("#div_pro").html(temp(data));	
 			}
 		});
+	});
+	
+	$("#div_pro").on("submit", "#frm", function(e){
+		e.preventDefault();
+		const pcode=$(frm.pcode).val();
+		const pname=$(frm.pname).val();
+		const dept=$(frm.dept).val();
+		const title=$("input[name='title']:checked").val();
+		const salary=$(frm.salary).val();
+		const hiredate=$(frm.hiredate).val();
+		console.log(pcode,pname,dept,title,salary,hiredate);
 	});
 </script>
 
