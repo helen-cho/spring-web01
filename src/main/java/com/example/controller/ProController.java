@@ -19,4 +19,10 @@ public class ProController {
 		model.addAttribute("pageName", "pro/insert.html");
 		return "home.html";
 	}
+	
+	@GetMapping("/read")
+	public String read(Model model) {
+		model.addAttribute("pageName", "pro/read.html");
+		return "home.html";
+	}
 }

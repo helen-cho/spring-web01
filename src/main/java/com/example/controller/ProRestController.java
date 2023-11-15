@@ -28,6 +28,11 @@ public class ProRestController {
 		return dao.list();
 	}
 	
+	@GetMapping("/read.json")
+	public HashMap<String,Object> read(String pcode){
+		return dao.read(pcode);
+	}
+	
 	@GetMapping("/code")
 	public int code() {
 		return dao.code();

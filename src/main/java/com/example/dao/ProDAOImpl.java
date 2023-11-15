@@ -29,4 +29,15 @@ public class ProDAOImpl implements ProDAO{
 	public void insert(ProVO vo) {
 		session.insert(namespace + ".insert", vo);
 	}
+
+	@Override
+	public HashMap<String, Object> read(String pcode) {
+		return session.selectOne(namespace + ".read", pcode);
+	}
 }
+
+
+
+
+
+

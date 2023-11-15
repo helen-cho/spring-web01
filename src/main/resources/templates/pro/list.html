@@ -4,14 +4,14 @@
 		<a href="/pro/insert" class="btn btn-primary px-5">교수등록</a>
 	</div>
 	<hr>
-	<did id="div_pro"></did>
+	<div id="div_pro"></div>
 </div>
 <script id="temp_pro" type="x-handlebars-template">
 	<table class="table">
 		{{#each .}}
 		<tr>
 			<td>{{pcode}}</td>
-			<td>{{pname}}<td>
+			<td><a href="/pro/read?pcode={{pcode}}">{{pname}}</a><td>
 			<td>{{dept}}</td>
 			<td>{{title}}</td>
 			<td>{{fmtdate}}</td>
