@@ -15,7 +15,7 @@
 			</div>
 			<div class="input-group mb-2">
 				<span class="input-group-text">교수학과</span>
-				<select name="dept" class="form-select">
+				<select name="dept" class="form-select" disabled>
 					<option value="전산" {{fn_dept dept '전산'}}>전자계산학과</option>
 					<option value="전자" {{fn_dept dept '전자'}}>전자공학과</option>
 					<option value="건축" {{fn_dept dept '건축'}}>건축공학과</option>
@@ -85,7 +85,19 @@
 		const title=$("input[name='title']:checked").val();
 		const salary=$(frm.salary).val();
 		const hiredate=$(frm.hiredate).val();
-		console.log(pcode,pname,dept,title,salary,hiredate);
+		//console.log(pcode,pname,dept,title,salary,hiredate);
+		if(confirm("수정된 내용을 저장하실래요?")){
+			$.ajax({
+				type:"post",
+				url:"/pro/update",
+				data:JSON.stringify({pcode,pname,dept,title,salary,hiredate}),
+				contentType:"application/JSON",
+				success:function(){
+					alert("정보가 수정되었습니다!");
+					location.href="/pro/list";
+				}
+			})
+		}
 	});
 </script>
 

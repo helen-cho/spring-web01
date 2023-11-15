@@ -10,4 +10,5 @@ public interface ProDAO {
 	public HashMap<String,Object> read(String pcode);
 	public List<HashMap<String,Object>> stuList(String pcode);
 	public List<HashMap<String,Object>> couList(String pcode);
+	public void update(ProVO vo);
 }

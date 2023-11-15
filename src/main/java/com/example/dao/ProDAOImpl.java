@@ -44,6 +44,11 @@ public class ProDAOImpl implements ProDAO{
 	public List<HashMap<String, Object>> couList(String pcode) {
 		return session.selectList(namespace + ".cou_list", pcode);
 	}
+
+	@Override
+	public void update(ProVO vo) {
+		session.update(namespace + ".update", vo);
+	}
 }
 
 

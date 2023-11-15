@@ -23,6 +23,11 @@ public class ProRestController {
 		dao.insert(vo);
 	}
 	
+	@PostMapping("/update")
+	public void update(@RequestBody ProVO vo) {
+		dao.update(vo);
+	}
+	
 	@GetMapping("/stu/list.json")
 	public List<HashMap<String,Object>> stuList(String pcode){
 		return dao.stuList(pcode);
