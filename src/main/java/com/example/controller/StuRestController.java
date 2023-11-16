@@ -24,4 +24,9 @@ public class StuRestController {
 	public int total(QueryVO vo) {
 		return dao.total(vo);
 	}
+	
+	@GetMapping("/read.json")
+	public HashMap<String,Object> list(String scode){
+		return dao.read(scode);
+	}
 }

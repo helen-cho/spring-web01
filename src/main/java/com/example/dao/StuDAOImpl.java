@@ -25,4 +25,9 @@ public class StuDAOImpl implements StuDAO{
 	public int total(QueryVO vo) {
 		return session.selectOne(namespace + ".total", vo);
 	}
+
+	@Override
+	public HashMap<String, Object> read(String scode) {
+		return session.selectOne(namespace + ".read", scode);
+	}
 }

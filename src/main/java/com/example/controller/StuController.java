@@ -14,4 +14,10 @@ public class StuController {
 		model.addAttribute("pageName", "stu/list");
 		return "home";
 	}
+	
+	@GetMapping("/read")
+	public String read(Model model) {
+		model.addAttribute("pageName", "stu/read");
+		return "home";
+	}
 }
