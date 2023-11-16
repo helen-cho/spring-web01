@@ -14,4 +14,10 @@ public class CouController {
 		model.addAttribute("pageName", "cou/list");
 		return "home";
 	}
+	
+	@GetMapping("/read")
+	public String read(Model model) {
+		model.addAttribute("pageName", "cou/read");
+		return "home";
+	}
 }

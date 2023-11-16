@@ -24,4 +24,9 @@ public class CouRestController {
 		map.put("total", dao.total(vo));
 		return map;
 	}
+	
+	@GetMapping("/read.json")
+	public HashMap<String,Object> read(String lcode){
+		return dao.read(lcode);
+	}
 }

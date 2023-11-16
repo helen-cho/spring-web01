@@ -72,7 +72,7 @@
 			data:{size, page, key, query},
 			success:function(data){
 				$("#total").html(`검색수: ${data.total}건`);
-				if(data==0) {
+				if(data.total==0) {
 					$("#div_cou").html("<h3 class='text-center my-5'>검색자료가 존재하지않습니다.</h3>");	
 				}else{
 					const temp=Handlebars.compile($("#temp_cou").html());

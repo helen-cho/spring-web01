@@ -26,4 +26,9 @@ public class CouDAOImpl implements CouDAO{
 		return session.selectOne(namespace + ".total", vo); 
 	}
 
+	@Override
+	public HashMap<String, Object> read(String lcode) {
+		return session.selectOne(namespace + ".read", lcode);
+	}
+
 }
