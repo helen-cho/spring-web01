@@ -16,7 +16,7 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String login(Model model) {
-		model.addAttribute("pageName", "users/login.html");
+		model.addAttribute("pageName", "users/login");
 		return "home";
 	}
 	
