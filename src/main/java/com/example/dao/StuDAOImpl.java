@@ -30,4 +30,12 @@ public class StuDAOImpl implements StuDAO{
 	public HashMap<String, Object> read(String scode) {
 		return session.selectOne(namespace + ".read", scode);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> enroll(String scode) {
+		return session.selectList(namespace + ".enroll", scode);
+	}
 }
+
+
+

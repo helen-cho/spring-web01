@@ -29,4 +29,9 @@ public class StuRestController {
 	public HashMap<String,Object> read(String scode){
 		return dao.read(scode);
 	}
+	
+	@GetMapping("/enroll.json")
+	public List<HashMap<String,Object>> enroll(String scode){
+		return dao.enroll(scode);
+	}
 }
