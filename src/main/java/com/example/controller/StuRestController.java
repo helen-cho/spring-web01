@@ -26,7 +26,7 @@ public class StuRestController {
 	}
 	
 	@GetMapping("/read.json")
-	public HashMap<String,Object> list(String scode){
+	public HashMap<String,Object> read(String scode){
 		return dao.read(scode);
 	}
 }
