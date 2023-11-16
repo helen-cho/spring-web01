@@ -18,7 +18,10 @@ public class CouRestController {
 	CouDAO dao;
 	
 	@GetMapping("/list.json")
-	public List<HashMap<String,Object>> list(QueryVO vo){
-		return dao.list(vo);
+	public HashMap<String,Object> list(QueryVO vo){
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("list", dao.list(vo));
+		map.put("total", dao.total(vo));
+		return map;
 	}
 }

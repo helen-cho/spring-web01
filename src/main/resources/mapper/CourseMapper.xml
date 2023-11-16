@@ -4,6 +4,34 @@
     <select id="list" resultType="hashmap">
         select *
         from view_cou
+        <if test="key=='lcode'">
+        	where lcode like concat('%', #{query}, '%')
+        </if>
+        <if test="key=='lname'">
+        	where lname like concat('%', #{query}, '%')
+        </if>
+        <if test="key=='room'">
+        	where room like concat('%', #{query}, '%')
+        </if>
+        <if test="key=='pname'">
+        	where pname like concat('%', #{query}, '%')
+        </if>                        
         limit #{start}, #{size}
+    </select>
+    <select id="total" resultType="int">
+    	select count(*)
+    	from view_cou
+    	<if test="key=='lcode'">
+        	where lcode like concat('%', #{query}, '%')
+        </if>
+        <if test="key=='lname'">
+        	where lname like concat('%', #{query}, '%')
+        </if>
+        <if test="key=='room'">
+        	where room like concat('%', #{query}, '%')
+        </if>
+        <if test="key=='pname'">
+        	where pname like concat('%', #{query}, '%')
+        </if>  
     </select>
 </mapper>

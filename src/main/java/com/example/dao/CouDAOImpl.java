@@ -21,4 +21,9 @@ public class CouDAOImpl implements CouDAO{
 		return session.selectList(namespace + ".list", vo);
 	}
 
+	@Override
+	public int total(QueryVO vo) {
+		return session.selectOne(namespace + ".total", vo); 
+	}
+
 }
