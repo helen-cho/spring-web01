@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/stu")
 public class StuController {
+	
 	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("pageName", "stu/list");
