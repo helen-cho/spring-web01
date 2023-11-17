@@ -27,4 +27,12 @@ public class EnrollDAOImpl implements EnrollDAO{
 		map.put("lcode", lcode);
 		session.update(namespace + ".persons", map);
 	}
+
+	@Override
+	public void insert(String scode, String lcode) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("scode", scode);
+		map.put("lcode", lcode);
+		session.insert(namespace + ".insert", map);
+	}
 }
