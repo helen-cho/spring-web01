@@ -52,7 +52,15 @@
 	$("#div_enroll").on("click", ".btn-delete", function(){
 		const lcode=$(this).attr("lcode");
 		if(confirm(`${scode}학생의 ${lcode}강좌를 취소하실래요?`)){
-			
+			$.ajax({
+				type:"get",
+				url:"/enroll/delete",
+				data:{scode, lcode},
+				success:function(){
+					alert("해당강좌가 취소되었습니다.");
+					getEnroll();
+				}
+			})
 		}	
 	});
 	
