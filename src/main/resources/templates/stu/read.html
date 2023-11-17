@@ -19,11 +19,14 @@
 	</div>
 </div>
 <script id="temp_cou" type="x-handlebars-template">
-	<select class="form-select">
-		{{#each list}}
-			<option value="{{lcode}}">{{lname}}({{pname}}) {{persons}}/{{capacity}}</option>
-		{{/each}}
-	</select>	
+	<div class="input-group">
+		<select class="form-select" id="lcode">
+			{{#each list}}
+				<option value="{{lcode}}">{{lname}}({{pname}}) {{persons}}/{{capacity}}</option>
+			{{/each}}
+		</select>
+		<button class="btn btn-primary btn-insert">수강신청</button>
+	</div>	
 </script>
 	
 <script id="temp_enroll" type="x-handlebars-template">
@@ -34,8 +37,9 @@
 			<td>{{hours}}({{room}})</td>
 			<td>{{pname}}({{instructor}})</td>
 			<td class="text-end">{{persons}}/{{capacity}}</td>
-			<td>{{grade}}</td>
-			<td><button class="btn btn-danger btn-sm btn-delete" lcode="{{lcode}}"}>취소</button></td>
+			<td class="text-end">{{grade}}</td>
+			<td>{{edate}}</td>
+			<td><button class="btn btn-danger btn-sm btn-delete" lcode="{{lcode}}">취소</button></td>
 		</tr>	
 		{{/each}}
 	</table>	
@@ -56,6 +60,23 @@
 <script>
 	const scode="[[${param.scode}]]";
 	$("#nav-profile-tab").click();
+	
+	//수강신청
+	$("#div_cou").on("click", ".btn-insert", function(){
+		const lcode=$("#lcode").val();
+		if(confirm(`${scode}학생이 ${lcode}강좌를 수강신청하실래요?`)){
+			$.ajax({
+				type:"get",
+				url:"/enroll/insert",
+				data:{scode, lcode},
+				success:function(){
+					alert("수강신청완료!");
+					getCou();
+					getEnroll();
+				}
+			})
+		}
+	});
 	
 	getCou();
 	function getCou(){
