@@ -26,6 +26,7 @@
 			<td>{{pname}}({{instructor}})</td>
 			<td class="text-end">{{persons}}/{{capacity}}</td>
 			<td>{{grade}}</td>
+			<td><button class="btn btn-danger btn-sm btn-delete" lcode="{{lcode}}"}>취소</button></td>
 		</tr>	
 		{{/each}}
 	</table>	
@@ -45,6 +46,16 @@
 </script>
 <script>
 	const scode="[[${param.scode}]]";
+	$("#nav-profile-tab").click();
+	
+	//취소클릭
+	$("#div_enroll").on("click", ".btn-delete", function(){
+		const lcode=$(this).attr("lcode");
+		if(confirm(`${scode}학생의 ${lcode}강좌를 취소하실래요?`)){
+			
+		}	
+	});
+	
 	$(window).on("load", function(){
 		$.ajax({
 			type:"get",

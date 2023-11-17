@@ -29,4 +29,9 @@ public class CouRestController {
 	public HashMap<String,Object> read(String lcode){
 		return dao.read(lcode);
 	}
+	
+	@GetMapping("/enroll.json")
+	public List<HashMap<String,Object>> enroll(String lcode){
+		return dao.enroll(lcode);
+	}
 }
