@@ -14,4 +14,8 @@
 		set persons=persons + #{count}
 		where lcode=#{lcode}
 	</update>
+	<select id="read" resultType="hashmap">
+		select * from enrollments
+		where scode=#{scode} and lcode=#{lcode}
+	</select>
 </mapper>

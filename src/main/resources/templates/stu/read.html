@@ -13,37 +13,10 @@
 			<div id="div_stu" class="row justify-content-center mt-5"></div>
 		</div>
 		<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-			<div id="div_cou" class="card p-3 mt-5"></div>
-			<div id="div_enroll" class="mt-5"></div>
+			<div id="div_enroll"></div>
 		</div>
 	</div>
 </div>
-<script id="temp_cou" type="x-handlebars-template">
-	<div class="input-group">
-		<select class="form-select" id="lcode">
-			{{#each list}}
-				<option value="{{lcode}}">{{lname}}({{pname}}) {{persons}}/{{capacity}}</option>
-			{{/each}}
-		</select>
-		<button class="btn btn-primary btn-insert">수강신청</button>
-	</div>	
-</script>
-	
-<script id="temp_enroll" type="x-handlebars-template">
-	<table class="table">
-		{{#each .}}
-		<tr>
-			<td>{{lname}}({{lcode}})</td>
-			<td>{{hours}}({{room}})</td>
-			<td>{{pname}}({{instructor}})</td>
-			<td class="text-end">{{persons}}/{{capacity}}</td>
-			<td class="text-end">{{grade}}</td>
-			<td>{{edate}}</td>
-			<td><button class="btn btn-danger btn-sm btn-delete" lcode="{{lcode}}">취소</button></td>
-		</tr>	
-		{{/each}}
-	</table>	
-</script>
 
 <script id="temp_stu" type="x-handlebars-template">
 	<div class="col">
@@ -57,69 +30,57 @@
 		</div>	
 	</div>	
 </script>
+<script id="temp_enroll" type="x-handlebars-template">
+	<table class="table">
+		{{#each .}}
+			<tr>
+				<td>{{lname}} ({{lcode}})</td>
+				<td>{{pname}} ({{room}})</td>
+				<td>{{hours}}시수</td>
+				<td class="text-end">{{persons}}명/{{capacity}}명</td>
+				<td><button class="btn-delete btn btn-danger btn-sm" lcode="{{lcode}}">취소</td>
+			</tr>	
+		{{/each}}
+	</table>	
+</script>
+	
 <script>
 	const scode="[[${param.scode}]]";
 	$("#nav-profile-tab").click();
 	
-	//수강신청
-	$("#div_cou").on("click", ".btn-insert", function(){
-		const lcode=$("#lcode").val();
-		if(confirm(`${scode}학생이 ${lcode}강좌를 수강신청하실래요?`)){
+	//전체강좌목록
+	getCou();
+	function getCou(){
+		$.ajax({
+			type:"get",
+			url:"/cou/list.json",
+			data:{page:1, key:"lcode", query:"", size:100},
+			success:function(data){
+				console.log(data.list);
+			}
+		});	
+	}
+	
+	//취소버튼 클릭
+	$("#div_enroll").on("click", ".btn-delete", function(){
+		const lcode=$(this).attr("lcode");
+		if(confirm(`${scode}학생의 ${lcode}강좌를 수강취소하실래요?`)){
+			//수강취소
 			$.ajax({
-				type:"get",
-				url:"/enroll/insert",
-				data:{scode, lcode},
+				type:"post",
+				url:"/enroll/delete",
+				data:JSON.stringify({lcode, scode}),
+				contentType:"application/JSON",
 				success:function(){
-					alert("수강신청완료!");
-					getCou();
+					alert("수강취소완료!");
 					getEnroll();
 				}
 			})
 		}
 	});
 	
-	getCou();
-	function getCou(){
-		$.ajax({
-			type:"get",
-			url:"/cou/list.json",
-			data:{page:1,size:100,key:"lcode",query:""},
-			success:function(data){
-				const temp=Handlebars.compile($("#temp_cou").html());
-				$("#div_cou").html(temp(data));
-			}
-		});
-	}
-	
-	//취소클릭
-	$("#div_enroll").on("click", ".btn-delete", function(){
-		const lcode=$(this).attr("lcode");
-		if(confirm(`${scode}학생의 ${lcode}강좌를 취소하실래요?`)){
-			$.ajax({
-				type:"get",
-				url:"/enroll/delete",
-				data:{scode, lcode},
-				success:function(){
-					alert("해당강좌가 취소되었습니다.");
-					getEnroll();
-				}
-			})
-		}	
-	});
-	
-	$(window).on("load", function(){
-		$.ajax({
-			type:"get",
-			url:"/stu/read.json",
-			data:{scode},
-			success:function(data){
-				const temp=Handlebars.compile($("#temp_stu").html());
-				$("#div_stu").html(temp(data));
-			}
-		});
-		getEnroll();
-	});
-	
+	//수강신청목록
+	getEnroll();
 	function getEnroll(){
 		$.ajax({
 			type:"get",
@@ -131,6 +92,18 @@
 			}
 		})
 	}
+	
+	$(window).on("load", function(){
+		$.ajax({
+			type:"get",
+			url:"/stu/read.json",
+			data:{scode},
+			success:function(data){
+				const temp=Handlebars.compile($("#temp_stu").html());
+				$("#div_stu").html(temp(data));
+			}
+		});
+	});
 </script>
 
 

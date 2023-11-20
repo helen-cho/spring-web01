@@ -1,10 +1,16 @@
 package com.example.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dao.EnrollDAO;
+import com.example.domain.EnrollVO;
 import com.example.service.EnrollService;
 
 @RestController
@@ -13,13 +19,21 @@ public class EnrollRestController {
 	@Autowired
 	EnrollService service;
 	
-	@GetMapping("/delete")
-	public void delete(String lcode, String scode) {
-		service.delete(scode, lcode);
+	@Autowired
+	EnrollDAO dao;
+	
+	@PostMapping("/delete")
+	public void delete(@RequestBody EnrollVO vo) {
+		service.delete(vo);
 	}
 	
 	@GetMapping("/insert")
 	public void insert(String lcode, String scode) {
 		service.insert(scode, lcode);
+	}
+	
+	@GetMapping("/read")
+	public HashMap<String, Object> read(String scode, String lcode){
+		return dao.read(scode, lcode);
 	}
 }

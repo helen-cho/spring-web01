@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.EnrollVO;
+
 @Repository
 public class EnrollDAOImpl implements EnrollDAO{
 	@Autowired
@@ -13,11 +15,8 @@ public class EnrollDAOImpl implements EnrollDAO{
 	String  namespace="com.example.mapper.EnrollMapper";
 	
 	@Override
-	public void delete(String scode, String lcode) {
-		HashMap<String,Object> map=new HashMap<>();
-		map.put("scode", scode);
-		map.put("lcode", lcode);
-		session.delete(namespace + ".delete", map);
+	public void delete(EnrollVO vo) {
+		session.delete(namespace + ".delete", vo);
 	}
 
 	@Override
@@ -34,5 +33,13 @@ public class EnrollDAOImpl implements EnrollDAO{
 		map.put("scode", scode);
 		map.put("lcode", lcode);
 		session.insert(namespace + ".insert", map);
+	}
+
+	@Override
+	public HashMap<String, Object> read(String scode, String lcode) {
+		HashMap<String,Object> map=new HashMap<>();
+		map.put("scode", scode);
+		map.put("lcode", lcode);
+		return session.selectOne(namespace + ".read", map);
 	}
 }
