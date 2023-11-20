@@ -9,4 +9,5 @@ public interface EnrollDAO {
 	public void persons(String lcode, int count);
 	public void insert(EnrollVO vo);
 	public HashMap<String,Object> read(EnrollVO vo);
+	public void grade(EnrollVO vo);
 }

@@ -36,4 +36,14 @@ public class EnrollRestController {
 	public HashMap<String,Object> read(EnrollVO vo){
 		return dao.read(vo);
 	}
+	
+	@PostMapping("/grade")
+	public void grade(@RequestBody EnrollVO vo) {
+		dao.grade(vo);
+	}
 }
+
+
+
+
+

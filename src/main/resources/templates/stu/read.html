@@ -52,10 +52,15 @@
 
 <script id="temp_cou" type="x-handlebars-template">
 	{{#each list}}
-		<option value="{{lcode}}">
+		<option value="{{lcode}}" {{fn_persons persons capacity}}>
 			{{lname}} - {{pname}} - {{room}} - {{persons}}/{{capacity}}
 		</option>
 	{{/each}}
+</script>
+<script>
+	Handlebars.registerHelper("fn_persons", function(p, c){
+		if(p==c) return "disabled";
+	})
 </script>
 
 <script>

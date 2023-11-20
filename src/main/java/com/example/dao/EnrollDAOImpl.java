@@ -36,6 +36,11 @@ public class EnrollDAOImpl implements EnrollDAO{
 	public HashMap<String, Object> read(EnrollVO vo) {
 		return session.selectOne(namespace + ".read", vo);
 	}
+
+	@Override
+	public void grade(EnrollVO vo) {
+		session.update(namespace + ".grade", vo);
+	}
 }
 
 
