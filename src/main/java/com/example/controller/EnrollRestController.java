@@ -27,13 +27,13 @@ public class EnrollRestController {
 		service.delete(vo);
 	}
 	
-	@GetMapping("/insert")
-	public void insert(String lcode, String scode) {
-		service.insert(scode, lcode);
+	@PostMapping("/insert")
+	public void insert(@RequestBody EnrollVO vo) {
+		service.insert(vo);
 	}
 	
-	@GetMapping("/read")
-	public HashMap<String, Object> read(String scode, String lcode){
-		return dao.read(scode, lcode);
+	@GetMapping("/read.json")
+	public HashMap<String,Object> read(EnrollVO vo){
+		return dao.read(vo);
 	}
 }

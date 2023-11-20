@@ -7,6 +7,6 @@ import com.example.domain.EnrollVO;
 public interface EnrollDAO {
 	public void delete(EnrollVO vo);
 	public void persons(String lcode, int count);
-	public void insert(String scode, String lcode);
-	public HashMap<String, Object> read(String scode, String lcode);
+	public void insert(EnrollVO vo);
+	public HashMap<String,Object> read(EnrollVO vo);
 }

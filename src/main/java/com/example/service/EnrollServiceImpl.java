@@ -21,8 +21,8 @@ public class EnrollServiceImpl implements EnrollService{
 
 	@Transactional
 	@Override
-	public void insert(String scode, String lcode) {
-		dao.insert(scode, lcode);
-		dao.persons(lcode, 1);
+	public void insert(EnrollVO vo) {
+		dao.insert(vo);
+		dao.persons(vo.getLcode(), 1);
 	}
 }

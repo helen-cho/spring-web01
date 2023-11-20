@@ -28,18 +28,19 @@ public class EnrollDAOImpl implements EnrollDAO{
 	}
 
 	@Override
-	public void insert(String scode, String lcode) {
-		HashMap<String,Object> map=new HashMap<>();
-		map.put("scode", scode);
-		map.put("lcode", lcode);
-		session.insert(namespace + ".insert", map);
+	public void insert(EnrollVO vo) {
+		session.insert(namespace + ".insert", vo);
 	}
 
 	@Override
-	public HashMap<String, Object> read(String scode, String lcode) {
-		HashMap<String,Object> map=new HashMap<>();
-		map.put("scode", scode);
-		map.put("lcode", lcode);
-		return session.selectOne(namespace + ".read", map);
+	public HashMap<String, Object> read(EnrollVO vo) {
+		return session.selectOne(namespace + ".read", vo);
 	}
 }
+
+
+
+
+
+
+
