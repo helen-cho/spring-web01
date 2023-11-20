@@ -5,20 +5,17 @@
 	</div>	
 </div>
 <script>
-	lcode="[[${param.lcode}]]";
-	lname="[[${param.lname}]]";
-	$("#title").html(`${lname} 학생별 성적`);
+	$("#title").html(`강좌별 평균점수`);
 	getData();
 	function getData(){
 		$.ajax({
 			type:"get",
-			url:"/cou/enroll.json",
-			data:{lcode},
+			url:"/cou/graph.json",
 			success:function(data){
 				let rows=[];
-				rows.push(['학생이름', '점수']);
-				data.forEach(s=>{
-					rows.push([`${s.sname}(${s.scode})`, s.grade]);
+				rows.push(['강좌이름', '평균점수']);
+				data.forEach(c=>{
+					rows.push([`${c.lname}(${c.lcode})`, c.avg]);
 				});
 				barChart(rows);
 			}
