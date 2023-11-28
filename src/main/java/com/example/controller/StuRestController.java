@@ -17,6 +17,7 @@ public class StuRestController {
 	
 	@GetMapping("/list.json")
 	public HashMap<String,Object> list(QueryVO vo){
+		System.out.println(vo.toString());
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		map.put("list", dao.list(vo));
 		map.put("total", dao.total(vo));
